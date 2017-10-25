@@ -106,10 +106,11 @@
       let currentSongIndex = getSongIndex(SongPlayer.currentSong);
       currentSongIndex--;
 
-      let song = currentAlbum.songs[currentSongIndex];
       if(currentSongIndex<0) {
+        let song = currentAlbum.songs[0];
         stopSong(song);
       } else {
+        let song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
       }
@@ -123,10 +124,11 @@
       let currentSongIndex = getSongIndex(SongPlayer.currentSong);
       currentSongIndex++;
 
-      let song = currentAlbum.songs[currentSongIndex];
-      if(currentSongIndex>=currentAlbum.songs.length) {
+      if(currentSongIndex>currentAlbum.songs.length-1) {
+        let song = currentAlbum.songs[currentAlbum.songs.length-1];
         stopSong(song);
       } else {
+        let song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
       }
