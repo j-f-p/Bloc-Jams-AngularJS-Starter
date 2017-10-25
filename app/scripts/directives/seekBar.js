@@ -1,5 +1,5 @@
 (function() {
-  function seekBar() {
+  function seekBar($document) {
     let calculatePercent = function(seekBar, event) {
       let offsetX = event.pageX - seekBar.offset().left;
       let seekBarWidth = seekBar.width();
@@ -35,11 +35,25 @@
           let percent = calculatePercent(seekBar, event);
           scope.value = percent * scope.max;
         };
+
+        scope.trackThumb = function() {
+          $document.bind('mousemove.thumb', function(event){
+            let percent = calculatePercent(seekBar, event);
+            scope.$apply(function() {
+              scope.value = percent * scope.max;
+            });
+          });
+
+          $document.bind('mouseup.thumb', function() {
+            $document.unbind('mousemove.thumb');
+            $document.unbind('mouseup.thumb');
+          });
+        };
       }
     };
   }
 
   angular
     .module('blocJams')
-    .directive('seekBar', seekBar);
+    .directive('seekBar', ['$document', seekBar]);
 })();
