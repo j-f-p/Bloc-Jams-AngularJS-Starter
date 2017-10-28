@@ -14,11 +14,22 @@
       replace: true,
       restrict: 'E',
       scope: { },
+      scope: {
+        onChange: '&'
+      },
       link: function(scope, element, attributes) {
         scope.value = 0;
         scope.max = 100;
 
         let seekBar = $(element);
+
+        attributes.$observe('value', function(newValue) {
+          scope.value = newValue;
+        });
+
+        attributes.$observe('max', function(newValue) {
+          scope.max = newValue;
+        })
 
         let percentString = function() {
           let value = scope.value;
@@ -38,6 +49,7 @@
         scope.onClickSeekBar = function(event) {
           let percent = calculatePercent(seekBar, event);
           scope.value = percent * scope.max;
+          notifyOnChange(scope.value);
         };
 
         scope.trackThumb = function() {
@@ -52,6 +64,12 @@
             $document.unbind('mousemove.thumb');
             $document.unbind('mouseup.thumb');
           });
+        };
+
+        let notifyOnChange = function(newValue) {
+          if(typeof scope.onChange==='function') {
+            scope.onChange({value: newValue});
+          }
         };
       }
     };
