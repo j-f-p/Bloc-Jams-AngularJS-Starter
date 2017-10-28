@@ -76,6 +76,9 @@
     * @param {Object} song
     */
     SongPlayer.play = function(song) {
+      if( SongPlayer.currentSong===null && (song===null || song==undefined) )
+        return;
+
       song = song || SongPlayer.currentSong;
       if(SongPlayer.currentSong !== song) {
         setSong(song);
