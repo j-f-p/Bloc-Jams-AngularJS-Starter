@@ -25,9 +25,9 @@
                {{playerBar.albumData.artist}}
              </h3>
              <div class="seek-control">
-                 <seek-bar value="{{playerBar.songPlayer.currentTime}}"
+                 <seek-bar avalue="{{playerBar.songPlayer.currentTime}}"
                    max="{{playerBar.songPlayer.currentSong.duration}}"
-                   on-change="playerBar.songPlayer.setCurrentTime(value)">
+                   on-change="playerBar.songPlayer.setCurrentTime(kvalue)">
                  </seek-bar>
                  <div class="current-time">
                    {{playerBar.songPlayer.currentTime}}
@@ -39,8 +39,8 @@
          </div>
          <div class="control-group volume">
              <span class="icon ion-volume-high"></span>
-             <seek-bar value="{{playerBar.songPlayer.volume}}"
-               max="{{100}}" on-change="playerBar.songPlayer.setVolume(value)">
+             <seek-bar avalue="{{playerBar.songPlayer.volume}}"
+               max="{{100}}" on-change="playerBar.songPlayer.setVolume(kvalue)">
              </seek-bar>
          </div>
      </div>

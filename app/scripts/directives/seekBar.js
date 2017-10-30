@@ -23,7 +23,7 @@
 
         let seekBar = $(element);
 
-        attributes.$observe('value', function(newValue) {
+        attributes.$observe('avalue', function(newValue) {
           scope.value = newValue;
         });
 
@@ -68,7 +68,7 @@
 
         let notifyOnChange = function(newValue) {
           if(typeof scope.onChange==='function') {
-            scope.onChange({value: newValue});
+            scope.onChange({kvalue: newValue});
           }
         };
       }
