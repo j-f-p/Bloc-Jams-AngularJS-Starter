@@ -30,10 +30,10 @@
                    on-change="playerBar.songPlayer.setCurrentTime(kvalue)">
                  </seek-bar>
                  <div class="current-time">
-                   {{playerBar.songPlayer.currentTime}}
+                   {{playerBar.songPlayer.currentTime | timecode}}
                  </div>
                  <div class="total-time">
-                   {{playerBar.songPlayer.currentSong.duration}}
+                   {{playerBar.songPlayer.currentSong.duration | timecode}}
                  </div>
              </div>
          </div>
