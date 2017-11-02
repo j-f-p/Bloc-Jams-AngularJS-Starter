@@ -100,9 +100,8 @@
         setSong(song);
         playSong(song);
       } else if (SongPlayer.currentSong===song) {
-        if(currentBuzzObject.isPaused()) {
-          currentBuzzObject.play();
-        }
+        // if(currentBuzzObject.isPaused()) // .isPaused true for pause or stop
+          playSong(song);
       }
     };
 
