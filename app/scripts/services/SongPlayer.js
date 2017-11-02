@@ -18,6 +18,8 @@
     */
     let currentBuzzObject = null;
 
+    let formerVolume=null;
+
     /**
     * @function setSong
     * @desc Stops currently playing song and loads new audio file
@@ -25,12 +27,15 @@
     */
     let setSong = function(song) {
       if(currentBuzzObject) {
+        formerVolume=currentBuzzObject.getVolume();
         currentBuzzObject.stop();
         SongPlayer.currentSong.playing = null;
       }
 
       currentBuzzObject = new buzz.sound(song.audioUrl,
       { formats: ['mp3'], preload: true} );
+
+      if(formerVolume) currentBuzzObject.setVolume(formerVolume);
 
       currentBuzzObject.bind('timeupdate', function() {
         $rootScope.$apply(function() {
