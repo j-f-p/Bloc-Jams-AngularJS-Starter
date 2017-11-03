@@ -18,6 +18,10 @@
     */
     let currentBuzzObject = null;
 
+    /**
+    * @desc volume of buzz object to be stopped
+    * @type {Number}
+    */
     let formerVolume=null;
 
     /**
@@ -40,7 +44,6 @@
       currentBuzzObject.bind('timeupdate', function() {
         $rootScope.$apply(function() {
           SongPlayer.currentTime = currentBuzzObject.getTime();
-          SongPlayer.volume = currentBuzzObject.getVolume();
         });
       });
       SongPlayer.currentSong = song;
@@ -177,6 +180,10 @@
       if(currentBuzzObject) {
         currentBuzzObject.setVolume(volume);
       }
+    }
+
+    SongPlayer.formatTime = function(secondsString) {
+      return buzz.toTimer( Number.parseFloat(secondsString) );
     }
 
     return SongPlayer;

@@ -1,11 +1,11 @@
 (function() {
-  function timecode() {
+  function timecode(SongPlayer) {
     return function(secondsString) {
-      return buzz.toTimer( Number.parseFloat(secondsString) );
+      return SongPlayer.formatTime(secondsString);
     };
   }
 
   angular
     .module('blocJams')
-    .filter('timecode', timecode);
+    .filter('timecode', ['SongPlayer', timecode]);
 })();
