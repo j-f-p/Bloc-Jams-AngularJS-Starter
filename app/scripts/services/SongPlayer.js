@@ -98,7 +98,11 @@
     * @type {Number}
     */
     SongPlayer.volume = null;
-
+    /**
+    * @desc flag indicating whether volume is on
+    * @type {Boolean}
+    */
+    SongPlayer.volumeOn = true;
     /**
     * @function play
     * @desc executes logic for playing song upon click of play button
@@ -185,6 +189,17 @@
       if(currentBuzzObject) {
         currentBuzzObject.setVolume(volume);
       }
+    }
+    /**
+    * @function toggleMute
+    * @desc mutes or unmutes the volume
+    */
+    SongPlayer.toggleMute = function() {
+      currentBuzzObject.toggleMute();
+      if(SongPlayer.volumeOn)
+        SongPlayer.volumeOn=false;
+      else
+        SongPlayer.volumeOn=true;
     }
 
     SongPlayer.formatTime = function(secondsString) {
